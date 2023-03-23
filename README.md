@@ -11,7 +11,7 @@ Required Python libraries:
 * MatPlotLib
 * RamPy
 
-## Authenticity Check Scripts
+## Authenticity Check Scripts(1)
 1. Open 'Authenticity Check Graphene.py'
 2. Define filepath to a reference image of a nanosheet you wish to check for authenticity (line 71). We suggest using any of the images in 'Graphene Nanotag Duplicates' or 'Counterfeit Graphene'.
 3. Define the image_scale (line 68). For our data set use 12.9 px/um.
@@ -30,7 +30,7 @@ Required Python libraries:
 * If lines 161-204 are enabled two .csv files will also be output. One containing the morphological parameters L, W, A and L/W for the nanosheets in the folder. The second containing the ZMD scores of every unique shape pairing in the folder of images. By opening the second you can sort the ZMD scores from low to high to check for false positive or false negative matching. The values from these two .csv files are used to produce the histograms shown in the manuscript.
 * Note that an additional script 'Authenticity Check MoS2.py' is supplied for use with the corresponding MoS2 images and is ran following the same steps. This script features a slight variation as erosion and dilation of the threshold images is required to isolate the nanosheet contours for our data set.
 
-## Generating Streamline Raman Map Script
+## Generating Streamline Raman Map Script(2)
 1. Open 'Graphene Streamline Raman map area.py'.
 2. Define filename (line 35) as filepath to a mapping data .txt file supplied in 'Streamline Raman data'.
 3. Ensure output_folder_map and output_folder_thresh are defined as the filepaths to corresponding  folders in 'Raman Maps and OM images'.
@@ -83,3 +83,9 @@ Required Python libraries:
 * The layer number (N) is estimated using the peak-to-peak distance.
 * The fitted spectra is saved for each .txt file.
 * A .csv file is output with the spectrum name, peak-to-peak difference, layer number and R^2 for all fitted spectra.
+
+
+
+References:
+(1) The code for Zernike Moments was adapted from an article by unknown author. https://cvexplained.wordpress.com/2020/07/21/10-5-zernike-moments/
+(2) The code for the function to remove cosmic rays from Raman spectra  was adapted from an article by Nicolas Coca. https://towardsdatascience.com/removing-spikes-from-raman-spectra-8a9fdda0ac22 
