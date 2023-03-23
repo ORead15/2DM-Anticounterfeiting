@@ -107,7 +107,7 @@ for i in range(len(image_name_list)):
 #--------------EXPORT NAMES AND ZMD SCORES TO .CSV FILE-------------------#
 #create tab delimited .csv file tabulating ZMD scores and names.
 headers = ["Flakes compared", "Zernike Distance Difference"] #define collumn headers
-with open('Scale Normalised all data and dupes for SI.csv', 'w', newline = '') as file: #create new .csv tab delimited document with specified file name ensuring no gaps between rows
+with open('Scale normalised ZMD scores.csv', 'w', newline = '') as file: #create new .csv tab delimited document with specified file name ensuring no gaps between rows
     writer = csv.writer(file, delimiter='\t')
     dw = csv.DictWriter(file, delimiter = '\t', fieldnames=headers)
     dw.writeheader()
