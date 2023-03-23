@@ -86,6 +86,7 @@ Required Python libraries:
 
 
 
-References:
-(1) The code for Zernike Moments was adapted from an article by unknown author. https://cvexplained.wordpress.com/2020/07/21/10-5-zernike-moments/
-(2) The code for the function to remove cosmic rays from Raman spectra  was adapted from an article by Nicolas Coca. https://towardsdatascience.com/removing-spikes-from-raman-spectra-8a9fdda0ac22 
+### References
+[1] The code for Zernike Moments was adapted from an article by unknown author. https://cvexplained.wordpress.com/2020/07/21/10-5-zernike-moments/
+
+[2] The code for the function to remove cosmic rays from Raman spectra  was adapted from an article by Nicolas Coca. https://towardsdatascience.com/removing-spikes-from-raman-spectra-8a9fdda0ac22 
