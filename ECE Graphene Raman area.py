@@ -1,15 +1,12 @@
 #import all modules
-import numpy as np
+import numpy as np #pip install numpy
 from numpy import loadtxt
-import matplotlib.pyplot as plt
-import scipy as scipy
-import rampy as rp
+import matplotlib.pyplot as plt #pip install matplotlib
+import scipy as scipy #pip install scipy
+import rampy as rp #pip install rampy
 import os
 
-#----------DEFINE FUNCTIONS----------------------------------#
-
 #cosmic ray removal function adapted from article by Nicolas Coca: https://towardsdatascience.com/removing-spikes-from-raman-spectra-8a9fdda0ac22
-
 #function to calculate modified z-score for cosmic ray removal
 def modified_z_score(intensity):
     median_int = np.median(intensity)
@@ -35,12 +32,12 @@ def remove_cosmic_rays(y, m):
 #---------------LOAD MAPPING DATA, INITIALISE MAPPING MATRIX PARAMETERS, DEFINE RESULTS MATRICES--------------------------------#
 
 #Load mapping dataset, with raw data of form: x coor, y coor, raman shift / cm^-1, intensity / a.u.
-filename = 'D:\Anticounterfeiting Paper\Streamline\Ollie Samples\ECE Graphene/Flake 1.txt' #define mapping data filename
+filename = 'path_to_raw_mapping_data.txt' #define mapping data filename
 
 #load spectra data into np array ignoring headers
 spectra_data = loadtxt(filename)
 
-#trim sample/file name from filepath and remove .txt extension
+#trim sample name and output folder from filepath and remove .txt extension
 head, tail = os.path.split(filename)
 sample_name = tail[:-4]
 output_folder = head
@@ -115,7 +112,7 @@ for i in range(0,spectra_count):
     area_matrix[x_coord, y_coord] = area #set area value to corresponding position in results matrix
     
     #to produce threshold Raman map
-    if area > 15000: #set binarisation threshold
+    if area > 15000: #set binarisation threshold, may need to be optimised for different data
         threshold_matrix[x_coord, y_coord] = 1 #set pixels/spectra associated with nanosheet to 1
     else:
         threshold_matrix[x_coord, y_coord] = 0 #set pixels/spectra associated with background to 0
