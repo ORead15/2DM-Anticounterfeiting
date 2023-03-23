@@ -13,14 +13,14 @@ Required Python libraries:
 
 ## Authenticity Check Scripts
 1. Open 'Authenticity Check Graphene.py'
-2. Define ref_filename (line 71): filepath to a reference image of a nanosheet you wish to check for authenticity. We recommend using any of the images in 'Graphene Nanotag Duplicates' or 'Counterfeit Graphene'.
+2. Define filepath to a reference image of a nanosheet you wish to check for authenticity (line 71). We suggest using any of the images in 'Graphene Nanotag Duplicates' or 'Counterfeit Graphene'.
 3. Define the image_scale (line 68). For our data set use 12.9 px/um.
-4. Ensure the folder containing 'genuine' nanosheet images is defined (line 86). We recommend using the folder 'Graphene Nanotags' which is supplied.
+4. Set filepath to folder containing genuine nanosheet library in for loop (line 86). We suggest using the folder 'Graphene Nanotags' which is supplied.
 5. Run the script.
 
 ### In summary:
-* Each image in the folder (and the ref_image) is processed to obtain the thresholded binary image.
-* The contour of the nanosheet is calculated.
+* Each image in the folder (as well as the ref_image) is processed to obtain a thresholded binary image.
+* The contours of the nanosheets are calculated from the threshold images.
 * The region of interest (roi) is cropped using a bounding box of the contour. (achieving translation invariance)
 * The Zernike moments are calculated from the binary roi up to order 8, using the radius as the minEnclosingCircle of the contour.
 * The Euclidean distance is calculated between the Zernike Moments of the ref_image and every image in the folder. We refer to this as the Zernike Moment Distance (ZMD).
@@ -44,19 +44,24 @@ Required Python libraries:
 
 
 ## Raman-Optical Shape Matching Scripts
-#### First we need to resize the Raman maps so the nanosheet has the same aspect ratio as the corresponding optical imaage.
+#### First we need to resize the Raman maps so the nanosheet has the same aspect ratio as the corresponding optical image.
 1. Open 'Resize Raman contours to OM contours.py'.
 2. Ensure your filepath to 'Raman Maps and OM Images\Raman Threshold/*.tif' is specified in the for loop (line 64)
 3. Ensure your filepath to 'Raman Maps and OM Images\OM Raman/*.tif' is specified in the for loop (line 79)
 4. Ensure your filepath to the corresponding folders on Lines 71, 75, 82, 91, 95 are specified.
 5. Run script.
 
-#### We can then run the next script.
+#### We can then run the next script to match optical-Raman nanotag shapes.
 1. Open 'Raman OM Shape Matching.py'
 2. Ensure your filepath to 'Raman Maps and OM Images\OM resave/*.tif' is specified in the for loop (line 73)
 3. Ensure your filepath to 'Raman Maps and OM Images\Rescaled Raman Pad/*.tif' is specified in the for loop (line 95)
 4. Define a filepath to a reference optical image from the OM Resave folder. (line 146)
 5. Run script.
+
+### In summary:
+* Inputting a reference optical image and running the second script will output the most similar Raman map.
+* This demonstrates a rough proof of concept that the consumer could record the optical image, and it will match to the manufacturers optical image, and Raman map.
+* Unfortunately this method results in 2 false positve matches out of 11.
 
 ## PL fitting script
 1. Open 'MoS2 Bulk PL Spectra fitting.py.
