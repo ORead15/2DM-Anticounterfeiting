@@ -41,3 +41,36 @@ In summary:
 * Script will produce mapping images based on the area under the spectra of the D, G and D' peaks of graphene.
 * The raman mapping image will be saved to 'Raman Maps and OM Images/Raman area maps' folder.
 * The thresholded raman mapping image will be saved to 'Raman Maps and OM Images/Raman threshold' folder.
+
+
+Raman-Optical Shape Matching Steps:
+First we need to resize the Raman maps so the nanosheet has the same aspect ratio as the corresponding optical imaage.
+1. Open 'Resize Raman contours to OM contours.py'.
+2. Ensure your filepath to 'Raman Maps and OM Images\Raman Threshold/*.tif' is specified in the for loop (line 64)
+3. Ensure your filepath to 'Raman Maps and OM Images\OM Raman/*.tif' is specified in the for loop (line 79)
+4. Ensure your filepath to the corresponding folders on Lines 71, 75, 82, 91, 95 are specified.
+5. Run script.
+
+We can then run the next script.
+1. Open 'Raman OM Shape Matching.py'
+2. Ensure your filepath to 'Raman Maps and OM Images\OM resave/*.tif' is specified in the for loop (line 73)
+3. Ensure your filepath to 'Raman Maps and OM Images\Rescaled Raman Pad/*.tif' is specified in the for loop (line 95)
+4. Define a filepath to a reference optical image from the OM Resave folder. (line 146)
+5. Run script.
+
+In summary:
+* bla bla bla
+* bla bla bla
+* bla bla bla
+
+PL and Raman fitting scripts:
+1. Open 'MoS2 Bulk PL Spectra fitting.py.
+2. Set file path to 'PL MoS2 Data' folder in for loop (line 25).
+3. Run Script.
+4. Open 'MoS2 Bulk Raman Spectra fitting.py.
+5. Set file path to 'Raman MoS2 Data' folder in for loop (line 25).
+6. Run script.
+
+
+
+
