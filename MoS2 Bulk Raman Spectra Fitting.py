@@ -22,7 +22,7 @@ e12g_peak = [1500, 385, 5]
 a1g_peak = [3000, 404, 6]
 
 #loop over all spectra .txt files in defined folder
-for filename in glob.glob('path_to_folder_of_Raman_data/*.txt'):
+for filename in glob.glob('Raman MoS2 Data/*.txt'):
     
     #trim filename from filepath
     head, tail = os.path.split(filename)
