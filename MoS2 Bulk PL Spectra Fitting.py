@@ -1,9 +1,9 @@
 #Import Modules 
-import numpy as np
+import numpy as np #pip install numpy
 from numpy import loadtxt
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt #pip install matplotlib
 import csv
-import scipy
+import scipy #pip install scipy
 import glob
 import os
 
