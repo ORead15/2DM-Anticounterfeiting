@@ -1,9 +1,9 @@
-import numpy as np
+import numpy as np #pip install numpy
 from numpy import loadtxt
-import rampy as rp
-import matplotlib.pyplot as plt
+import rampy as rp #pip install rampy
+import matplotlib.pyplot as plt #pip install matplotlib
 import csv
-import scipy
+import scipy #pip install scipy
 import glob
 import os
 
@@ -22,7 +22,7 @@ e12g_peak = [1500, 385, 5]
 a1g_peak = [3000, 404, 6]
 
 #loop over all spectra .txt files in defined folder
-for filename in glob.glob('D:\Anticounterfeiting Paper\PL\PL Raman MoS2\MoS2 Raman/*.txt'):
+for filename in glob.glob('path_to_folder_of_Raman_data/*.txt'):
     
     #trim filename from filepath
     head, tail = os.path.split(filename)
