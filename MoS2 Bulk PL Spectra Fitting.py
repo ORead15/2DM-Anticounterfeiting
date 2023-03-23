@@ -22,7 +22,7 @@ A_peak = [9000, 1.85, 0.1]
 B_peak = [3200, 2, 0.15]
 
 #loop over all spectra .txt files in defined folder
-for filename in glob.glob('D:\Anticounterfeiting Paper\PL\PL Raman MoS2\MoS2 PL/*.txt'):
+for filename in glob.glob('path_to_folder_of_PL_data/*.txt'):
 
     #trim filename from filepath
     head, tail = os.path.split(filename)
