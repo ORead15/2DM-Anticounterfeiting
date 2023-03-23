@@ -68,7 +68,7 @@ def measure_size(flake_contour):
 image_scale = 12.9 #set image scale pixels/um (measure from scale bar)
 
 #Define Reference Image i.e. nanosheet to check for authenticity
-ref_filename = "filepath.ext" #define filepath to image
+ref_filename = "Graphene Nanotag Duplicates/Duplicate Graphene 2.tif" #define filepath to image e.g in duplicate nanotags folder
 refImage = cv2.imread(ref_filename) #read image
 
 (refcnts, refZernikeMoments) = get_moments(refImage) #Get contours and zernike moments from the reference nanosheet
@@ -82,8 +82,8 @@ area_list = []
 aspect_ratio_list = []
 zernike_list = []
 
-#Apply each function to each image in a defined folder containing 'genuine' nanosheets
-for filename in glob.glob('D:\Anticounterfeiting Paper\Image Datasets\Graphene nanotags and duplicates/*.tif'):
+#Apply each function to each image in a defined folder containing 'genuine' graphene nanotags
+for filename in glob.glob('Graphene Nanotags/*.tif'):
     
     #trim image name from filepath, append to list removing extension (.tif)
     head, tail = os.path.split(filename)
