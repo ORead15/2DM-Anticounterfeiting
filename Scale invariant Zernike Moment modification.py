@@ -55,7 +55,7 @@ beta = 12000 # defined Beta value, desired value of m'00
 zernike_moment_list = [] #define list to store moments
 image_name_list = [] #define list to store image names
 
-for filename in glob.glob("path_to_images/*.tif"):
+for filename in glob.glob("Rescale Graphene Nanotag/*.tif"):
     #trim filename from filepath, append to list removing extension (.tif)
     head, tail = os.path.split(filename)
     image_name = tail[:-4]
