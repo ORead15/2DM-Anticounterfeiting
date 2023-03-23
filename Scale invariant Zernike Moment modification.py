@@ -1,13 +1,13 @@
 #import modules
-import numpy as np
-import mahotas
-import cv2
-from scipy.spatial import distance as dist
+import numpy as np #pip install numpy
+import mahotas #pip install mahotas
+import cv2 #pip install opencv-python
+from scipy.spatial import distance as dist #pip install scipy
 import glob
 import os
 import csv
 
-#define function to return the thresholded image from a filepath to an optical image
+#function to return the thresholded image from a filepath to an optical image
 def get_threshold(filename):
     image = cv2.imread(filename)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) #convert to grayscale
@@ -15,26 +15,26 @@ def get_threshold(filename):
     thresh = cv2.threshold(blurred, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1] #convert to binary    
     return thresh
 
-#define function to return the contours from a threshold image
+#function to return the contours from a threshold image
 def get_contours(threshold_image):
     cnts, hierarchy = cv2.findContours(threshold_image.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     sorted_cnts = sorted(cnts, key=cv2.contourArea, reverse = True)
     cnts = sorted_cnts[0]
     return cnts
 
-#define function to resize an image using scaling factor
+#function to resize an image using scaling factor
 def resize_image(image,alpha):
     thresh_resize = cv2.resize(image, None, fx = alpha, fy = alpha, interpolation = cv2.INTER_LINEAR) #nearest interpolation works best
     return thresh_resize
 
-#define function to return zernike moments from a threshold image and the shape contours.
+#function to return zernike moments from a threshold image and the shape contours.
 def get_moments(thresh_resize, cnts_resize):
     zernike_moments = []
     z_Moments = mahotas.features.zernike_moments(thresh_resize, cv2.minEnclosingCircle(cnts_resize)[1], degree=8)
     zernike_moments.append(z_Moments)
     return zernike_moments
 
-#define function to return the roi of a threshold by cropping bounding box of shape contours
+#function to return the roi of a threshold by cropping bounding box of shape contours
 def get_roi(thresh_image, cnts):
     #create an empty mask for the contour and draw filled contour.
     mask = np.zeros(thresh_image.shape[:2], dtype="uint8")
@@ -55,7 +55,7 @@ beta = 12000 # defined Beta value, desired value of m'00
 zernike_moment_list = [] #define list to store moments
 image_name_list = [] #define list to store image names
 
-for filename in glob.glob("E:\Anticounterfeiting Paper\Image Datasets\Graphene nanotags and duplicates/*.tif"):
+for filename in glob.glob("path_to_images/*.tif"):
     #trim filename from filepath, append to list removing extension (.tif)
     head, tail = os.path.split(filename)
     image_name = tail[:-4]
@@ -105,7 +105,7 @@ for i in range(len(image_name_list)):
 
 
 #--------------EXPORT NAMES AND ZMD SCORES TO .CSV FILE-------------------#
-#create tab delimiter .csv file tabulating ZMD scores and names.
+#create tab delimited .csv file tabulating ZMD scores and names.
 headers = ["Flakes compared", "Zernike Distance Difference"] #define collumn headers
 with open('Scale Normalised all data and dupes for SI.csv', 'w', newline = '') as file: #create new .csv tab delimited document with specified file name ensuring no gaps between rows
     writer = csv.writer(file, delimiter='\t')
