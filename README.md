@@ -11,7 +11,7 @@ Required Python libraries:
 * MatPlotLib
 * RamPy
 
-## Authenticity Check Scripts(1)
+## Authenticity Check Scripts<sup>[1]</sup>
 1. Open 'Authenticity Check Graphene.py'
 2. Define filepath to a reference image of a nanosheet you wish to check for authenticity (line 71). We suggest using any of the images in 'Graphene Nanotag Duplicates' or 'Counterfeit Graphene'.
 3. Define the image_scale (line 68). For our data set use 12.9 px/um.
@@ -30,7 +30,7 @@ Required Python libraries:
 * If lines 161-204 are enabled two .csv files will also be output. One containing the morphological parameters L, W, A and L/W for the nanosheets in the folder. The second containing the ZMD scores of every unique shape pairing in the folder of images. By opening the second you can sort the ZMD scores from low to high to check for false positive or false negative matching. The values from these two .csv files are used to produce the histograms shown in the manuscript.
 * Note that an additional script 'Authenticity Check MoS2.py' is supplied for use with the corresponding MoS2 images and is ran following the same steps. This script features a slight variation as erosion and dilation of the threshold images is required to isolate the nanosheet contours for our data set.
 
-## Generating Streamline Raman Map Script(2)
+## Generating Streamline Raman Map Script<sup>[2]</sup>
 1. Open 'Graphene Streamline Raman map area.py'.
 2. Define filename (line 35) as filepath to a mapping data .txt file supplied in 'Streamline Raman data'.
 3. Ensure output_folder_map and output_folder_thresh are defined as the filepaths to corresponding  folders in 'Raman Maps and OM images'.
