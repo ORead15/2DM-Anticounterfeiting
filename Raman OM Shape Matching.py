@@ -4,11 +4,11 @@
 
 #import modules
 import glob
-import cv2
+import cv2 #pip install opencv-python
 import os
-import mahotas
-from scipy.spatial import distance as dist
-import numpy as np
+import mahotas #pip install mahotas
+from scipy.spatial import distance as dist #pip install scipy
+import numpy as np #pip install numpy
 import csv
 
 #define function to get binary roi from a filepath to an image
@@ -70,7 +70,7 @@ raman_filename_list = []
 raman = False  #Set global variable to switch to cv2.THRESH_BINARY_INV for optical image analysis
 
 #loop through OM images extracting moments, names, dimensions
-for filename in glob.glob("D:\Anticounterfeiting Paper\POC Study\Flake Library\Raman Shapes\OM resave/*.tif"):
+for filename in glob.glob("Raman Shapes\OM resave/*.tif"):
     #trim image name from filepath
     head, tail = os.path.split(filename)
     image_name = tail[:-4]
@@ -92,7 +92,7 @@ raman = True #change global variable to switch to cv2.THRESH_BINARY for Raman ma
 
 z = 0 #initialise count
 
-for filename in glob.glob("D:\Anticounterfeiting Paper\POC Study\Flake Library\Raman Shapes\Rescaled Raman Pad/*.tif"):
+for filename in glob.glob("Raman Shapes\Rescaled Raman Pad/*.tif"):
     #trim image name from filepath
     head, tail = os.path.split(filename)
     image_name = tail[:-4]
@@ -143,7 +143,7 @@ with open('OM Raman ZMD scores.csv', 'w', newline = '') as file: #create new .cs
 #-----------------DEFINE OPTICAL/RAMAN IMAGE TO FIND RAMAN/OPTICAL SHAPE MATCH-------------#
 
 #Define file path to reference image to check for authenticity
-filepath = "D:\Anticounterfeiting Paper\POC Study\Flake Library\Raman Shapes\OM resave/Flake 1.tif"
+filepath = "Raman Shapes\OM resave/Flake 1.tif"
 
 raman = False #change to True if reference is a Raman map, False if OM image
 
@@ -181,83 +181,3 @@ print(f"The best optical match to the reference is: {om_imagename_list[closest_i
 print(f"The ZMD value is: {ref_om_moments_list[closest_index]}")
 cv2.imshow("Closest OM match", closest_om_match) #show image
 cv2.waitKey(0)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# #this loop is needed to resize the raman roi to be the same as the om images so moments can be extracted and compared
-# resized_img_list = []
-# i = 0
-# resized_raman_moments = []
-# for om_thresh in om_image_list:
-#     zern_moms = []
-#     h,w = get_OM_dimensions(om_thresh)
-#     dims = (w, h)
-#     resized_img = cv2.resize(raman_image_list[i], dims, interpolation= cv2.INTER_AREA)
-    
-
-#     cnts, hierarchy = cv2.findContours(resized_img.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-#     sorted_cnts = sorted(cnts, key=cv2.contourArea, reverse = True)
-#     cnts = sorted_cnts[0]
-
-#     zMoments = mahotas.features.zernike_moments(resized_img, cv2.minEnclosingCircle(cnts)[1], degree=8)
-#     zern_moms.append(zMoments)
-
-#     resized_raman_moments.append(zern_moms)
-
-#     resized_img_list.append(resized_img)
-
-#     cv2.imwrite("D:\Anticounterfeiting Paper\POC Study\Flake Library\Raman Shapes\Raman Contours/" + om_samplename_list[i] + ".tif", resized_img)
-#     #cv2.imshow("resize", resized_img)
-#     #cv2.waitKey(0)
-#     i += 1
-    
-# #define empty list to store zernike distance difference for each flake pairing
-# zernike_distance_list = []
-
-# for i in range(len(resized_raman_moments)):
-#     #calculate zernike moment distance between OM and Raman images
-#     zernike_diff = dist.cdist(resized_raman_moments[i], om_moments_list[i])   #00 11 22 33 44 ...
-#     zernike_distance_list.append(zernike_diff[0,0])
-    
-
-#     for j in range(i+1, len(resized_raman_moments)):
-#         zernike_diff = dist.cdist(resized_raman_moments[i], om_moments_list[j])   #01 02 03..., 12 13 14..., 23 24 25.., etc.
-#         zernike_distance_list.append(zernike_diff[0,0])
-        
-
-# #Define file path to Raman map to check for authenticity
-# filepath = "D:\Anticounterfeiting Paper\POC Study\Flake Library\Raman Shapes\Reference/Flake 12.png"
-
-# #Get contours and zernike moments of the referene flake
-# (refcnts, refZernikeMoments, roi) = get_moments_raman(filepath)
-
-# #print(refZernikeMoments)
-# #print(resized_raman_moments[0])
-
-# reference_moments_list = []
-
-# for i in range(len(om_moments_list)):
-#     zern_diff = dist.cdist(refZernikeMoments, om_moments_list[i])
-#     reference_moments_list.append(zern_diff[0,0])
-
-# print(reference_moments_list)
-
-# closest_index = np.argmin(reference_moments_list)
-# closest_match = cv2.imread(om_filename_list[closest_index])
-
-# print("best match to reference is:", om_samplename_list[closest_index])
-# print("The ZMD value is:", reference_moments_list[closest_index])
-
-# cv2.imshow("closest match", closest_match)
-# cv2.waitKey(0)
