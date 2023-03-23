@@ -32,7 +32,7 @@ def remove_cosmic_rays(y, m):
 #---------------LOAD MAPPING DATA, INITIALISE MAPPING MATRIX PARAMETERS, DEFINE RESULTS MATRICES--------------------------------#
 
 #Load mapping dataset, with raw data of form: x coor, y coor, raman shift / cm^-1, intensity / a.u.
-filename = 'path_to_raw_mapping_data.txt' #define mapping data filename
+filename = 'Streamline Raman Data/Flake 1.txt' #define mapping data filename
 
 #load spectra data into np array ignoring headers
 spectra_data = loadtxt(filename)
@@ -40,7 +40,8 @@ spectra_data = loadtxt(filename)
 #trim sample name and output folder from filepath and remove .txt extension
 head, tail = os.path.split(filename)
 sample_name = tail[:-4]
-output_folder = head
+output_folder_map = "Raman Maps and OM Images\Raman area maps"
+output_folder_thresh = "Raman Maps and OM Images\Raman Threshold"
 
 #find matrix dimensions of raman map
 matrix_x_dimension = np.size(np.unique(spectra_data[:,0]))   #find length of the array of containing all unique x coordinate values 
@@ -125,12 +126,12 @@ area_matrix = np.rot90(area_matrix, k = 1, axes = (0,1))
 plt.imshow(threshold_matrix, cmap = 'bone')#load threshold map
 plt.axis('off') #turn off axis
 plt.clim(0,1) #set scale
-plt.savefig(f"{output_folder}/{sample_name} threshold map.tif", bbox_inches ='tight', pad_inches = 0)#save image with no scale or whitespace to same folder containing loaded spectra
+plt.savefig(f"{output_folder_thresh}/{sample_name} threshold map.tif", bbox_inches ='tight', pad_inches = 0)#save image with no scale or whitespace to same folder containing loaded spectra
 plt.close() #close figure
 
 plt.imshow(area_matrix, cmap = 'bone')#load raman area map
 plt.axis('off') #turn off axis
 cb = plt.colorbar(label = 'A(D+G+D\')') # add colorbar with label
 plt.tight_layout() #use a tight layout
-plt.savefig(f"{output_folder}/{sample_name} Raman area.tif", bbox_inches ='tight', pad_inches = 0) #save final DG ratio map into the same folder containing the loaded spectra, using the filename as the name.
+plt.savefig(f"{output_folder_map}/{sample_name} Raman area.tif", bbox_inches ='tight', pad_inches = 0) #save final DG ratio map into the same folder containing the loaded spectra, using the filename as the name.
 plt.close()
