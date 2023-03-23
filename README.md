@@ -19,9 +19,6 @@ Authenticity Check Steps:
 5. Ensure the folder containing 'genuine' nanosheet images is defined (line 86). We recommend using the folder 'Graphene Nanotags' which is supplied.
 6. Run the script.
 
-- The script will output a crude figure in matplotlib showing the reference image, the most similar image from the genuine dataset and a decision on reference nanotag authenticity. 
-- If lines 161-204 are enabled two .csv files will also be output. One containing the morphological parameters L, W, A and L/W for the nanosheets in the folder. The second containing the ZMD scores of every unique shape pairing in the folder of images. By opening the second you can sort the ZMD scores from low to high to check for false positive or false negative matching. The values from these two .csv files are used to produce the histograms shown in the manuscript.
-
 In summary:
 * Each image in the folder (and the ref_image) is processed to obtain the thresholded binary image.
 * The contour of the nanosheet is calculated.
@@ -30,7 +27,8 @@ In summary:
 * The Euclidean distance is calculated between the Zernike Moments of the ref_image and every image in the folder. We refer to this as the Zernike Moment Distance (ZMD).
 * The image pairing with the lowest ZMD is returned. If the ZMD is below the thresold of 0.0315 the two images are considered identical. If the ZMD is above the threshold the two images are considered unique.
 * The script allows for rotational and translational invariant shape matching between images. It is also demonstrated to partially work with some scale difference between images. An alternative script 'Scale invariant Zernike Moment modification.py' is supplied which achieves translational, rotation and scale invariant shape matching.
-
-Note that an additional script 'Authenticity Check MoS2.py' is supplied for use with the corresponding MoS2 images and is ran following the same steps. This script features a slight variation as erosion and dilation of the threshold images is required to isolate the nanosheet contours for our data set.
+* The script will output a crude figure in matplotlib showing the reference image, the most similar image from the genuine dataset and a decision on reference nanotag authenticity. 
+* If lines 161-204 are enabled two .csv files will also be output. One containing the morphological parameters L, W, A and L/W for the nanosheets in the folder. The second containing the ZMD scores of every unique shape pairing in the folder of images. By opening the second you can sort the ZMD scores from low to high to check for false positive or false negative matching. The values from these two .csv files are used to produce the histograms shown in the manuscript.
+* Note that an additional script 'Authenticity Check MoS2.py' is supplied for use with the corresponding MoS2 images and is ran following the same steps. This script features a slight variation as erosion and dilation of the threshold images is required to isolate the nanosheet contours for our data set.
 
 
