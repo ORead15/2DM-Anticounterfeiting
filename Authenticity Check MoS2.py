@@ -88,7 +88,7 @@ def measure_size(flake_contour):
 image_scale = 12.9 #set image scale in pixels/um (measure from scale bar)
 
 #Define Reference Image i.e. nanosheet to check for authenticity
-ref_filename = "path_to_image.ext" #define filepath
+ref_filename = "MoS2 Nanotag Duplicate/Duplicate MoS2 67.tif" #define filepath
 refImage = cv2.imread(ref_filename) 
 
 #Get contours and zernike moments of the reference flake
@@ -104,7 +104,7 @@ aspect_ratio_list = []
 zernike_list = []
 
 #Apply each function to each image in a defined folder of genuine nanotags
-for filename in glob.glob('path_to_folder/*.ext'):
+for filename in glob.glob('MoS2 Nanotags/*.tif'):
     
     #trim filename from filepath, append to list removing extension (.tif)
     head, tail = os.path.split(filename)
