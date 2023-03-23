@@ -70,7 +70,7 @@ raman_filename_list = []
 raman = False  #Set global variable to switch to cv2.THRESH_BINARY_INV for optical image analysis
 
 #loop through OM images extracting moments, names, dimensions
-for filename in glob.glob("Raman Shapes\OM resave/*.tif"):
+for filename in glob.glob("Raman Maps and OM images\OM resave/*.tif"):
     #trim image name from filepath
     head, tail = os.path.split(filename)
     image_name = tail[:-4]
@@ -92,7 +92,7 @@ raman = True #change global variable to switch to cv2.THRESH_BINARY for Raman ma
 
 z = 0 #initialise count
 
-for filename in glob.glob("Raman Shapes\Rescaled Raman Pad/*.tif"):
+for filename in glob.glob("Raman Maps and OM images\Rescaled Raman Pad/*.tif"):
     #trim image name from filepath
     head, tail = os.path.split(filename)
     image_name = tail[:-4]
@@ -143,7 +143,7 @@ with open('OM Raman ZMD scores.csv', 'w', newline = '') as file: #create new .cs
 #-----------------DEFINE OPTICAL/RAMAN IMAGE TO FIND RAMAN/OPTICAL SHAPE MATCH-------------#
 
 #Define file path to reference image to check for authenticity
-filepath = "Raman Shapes\OM resave/Flake 1.tif"
+filepath = "Raman Maps and OM images\OM resave/Flake 1.tif"
 
 raman = False #change to True if reference is a Raman map, False if OM image
 
