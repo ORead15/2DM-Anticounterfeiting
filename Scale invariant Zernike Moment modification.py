@@ -31,6 +31,7 @@ def resize_image(image,alpha):
 def get_moments(thresh_resize, cnts_resize):
     zernike_moments = []
     z_Moments = mahotas.features.zernike_moments(thresh_resize, cv2.minEnclosingCircle(cnts_resize)[1], degree=8)
+    z_Moments = z_Moments[2:]
     zernike_moments.append(z_Moments)
     return zernike_moments
 
@@ -72,12 +73,8 @@ for filename in glob.glob("Rescale Graphene Nanotag/*.tif"):
     cv2.imwrite(f"{image_name} resize.tif", thresh_resize) #save rescale image
     cnts_resize = get_contours(thresh_resize) #get contours from resized image
 
-    #crop roi to get translation invariance                                                                                                         
-    thresh_resized_roi = get_roi(thresh_resize, cnts_resize) #crop roi from normalised image
-    cv2.imwrite(f"{image_name} scale normalized roi.tif", thresh_resized_roi) #save rescaled and centered image
-
     #calculate zernike moments from normalised roi
-    zernike_moments = get_moments(thresh_resized_roi, cnts_resize) #calculate zernike moments from new image
+    zernike_moments = get_moments(thresh_resize, cnts_resize) #calculate zernike moments from new image
     zernike_moment_list.append(zernike_moments) #store moments in list
 
 #define empty list to store zernike moment distance difference for each flake pairing
