@@ -1,7 +1,7 @@
-# Anticounterfeiting Solution Based on the shape of 2D Materials produced by ECE.
-*Oliver Read, Matthew Boyes, Xiuju Song, Jingjing Wang, Gianluca Fiora, Cinzia Casiraghi.
+# Novel Anti-Counterfeiting Solution Based on Two-Dimensional Materials Produced by Electrochemical Exfoliation.
+*Oliver Read, Khaled Parvez, Matthew Boyes, Xiuju Song, Jingjing Wang, Gianluca Fiora, Cinzia Casiraghi.
 
-We propose individual 2D material nanosheets can act as identification tags by exploiting their unique shape using image processing and computer vision techniques. We provide here a series of scripts that can be used to replicate the results shown in the main manuscript and supporting information, or to be adapted and used with your own data sets. We have also provied the image datasets and raw spectroscopic data used in the manuscript. We recommend downloading the repository as a .zip file for ease of use.
+We propose individual 2D material nanosheets can act as identification tags by exploiting their unique shape using image processing and computer vision techniques. We provide here a series of scripts that can be used to replicate the results shown in the main manuscript and supporting information, or to be adapted and used with your own data sets. We have also provied the image datasets and raw spectroscopic data used in the manuscript. We recommend downloading the repository as a .zip file for ease of use with the provided scripts.
 
 Required Python libraries:
 * NumPy
