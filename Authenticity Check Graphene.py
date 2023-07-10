@@ -30,7 +30,8 @@ def get_moments(image):
     roi = mask[y:y + h, x:x + w]
 
     #compute Zernike Moments from roi, add to list.
-    zMoments = mahotas.features.zernike_moments(roi, cv2.minEnclosingCircle(cnts)[1], degree=8) #use min enclosing circle of contour as radius, calculate moments up to order 8.
+    zMoments = mahotas.features.zernike_moments(mask, cv2.minEnclosingCircle(cnts)[1], degree=8) #use min enclosing circle of contour as radius, calculate moments up to order 8.
+    zMoments = zMoments[2:] #exclude first 2 z moments for translation invariance
     zernikeMoments.append(zMoments)
        
     #return nanosheet contour and its Zernike moments
