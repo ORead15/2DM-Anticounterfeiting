@@ -14,15 +14,16 @@ Required Python libraries:
 ## Authenticity Check Scripts<sup>[1]</sup>
 1. Open 'Authenticity Check Graphene.py'
 2. Define filepath to a reference image of a nanosheet you wish to check for authenticity (line 71). We suggest using any of the images in 'Graphene Nanotag Duplicates' or 'Counterfeit Graphene'.
-3. Define the image_scale (line 68). For our data set use 12.9 px/um.
+3. Define the image_scale (line 68). For our dataset use image_scale = 12.9 #px/um.
 4. Set filepath to folder containing genuine nanosheet library in for loop (line 86). We suggest using the folder 'Graphene Nanotags' which is supplied.
 5. Run the script.
 
 ### In summary:
 * Each image in the folder (as well as the ref_image) is processed to obtain a thresholded binary image.
 * The contours of the nanosheets are calculated from the threshold images.
-* The region of interest (roi) is cropped using a bounding box of the contour. (achieving translation invariance)
+* The region of interest (roi) is cropped using a minimum area bounding box of the contour from which the lateral size and width of the nanosheet are calculated.
 * The Zernike moments are calculated from the binary roi up to order 8, using the radius as the minEnclosingCircle of the contour.
+* The first two Zernike moments are excluded to achieve translation invariance as these are both zero by definition.
 * The Euclidean distance is calculated between the Zernike Moments of the ref_image and every image in the folder. We refer to this as the Zernike Moment Distance (ZMD).
 * The image pairing with the lowest ZMD is returned. If the ZMD is below the thresold of 0.0315 the two images are considered identical. If the ZMD is above the threshold the two images are considered unique.
 * The script allows for rotational and translational invariant shape matching between images. It is also demonstrated to partially work with some scale difference between images. An alternative script 'Scale invariant Zernike Moment modification.py' is supplied which achieves translational, rotation and scale invariant shape matching.
