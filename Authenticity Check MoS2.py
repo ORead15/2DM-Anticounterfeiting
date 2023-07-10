@@ -8,7 +8,6 @@ from scipy.spatial import distance as dist #pip install scipy
 from matplotlib import pyplot as plt #pip install matplotlib
 import csv
 
-
 #define function to return contour and Zernike moments from an image of a nanosheet
 #Note MoS2 image dataset requires erosion and dilation of 1 pixel from external contour to prevent merging of neighbouring features
 def get_moments(filename):
@@ -52,7 +51,8 @@ def get_moments(filename):
     roi = mask[y:y + h, x:x + w]
 
     #compute Zernike Moments from roi, add to list.
-    zMoments = mahotas.features.zernike_moments(roi, cv2.minEnclosingCircle(cnts)[1], degree=8)
+    zMoments = mahotas.features.zernike_moments(mask, cv2.minEnclosingCircle(cnts)[1], degree=8)
+    zMoments = zMoments[2:] #exlude first 2 Zernike moments for translation invariance
     zernikeMoments.append(zMoments)
        
     #return contour and its Zernike moments
